@@ -99,81 +99,6 @@
       box-shadow: 0 0 0 3px rgba(196, 120, 58, .12)
     }
 
-    /* ── ADMIN PROFILE IN DROPDOWN ── */
-    .admin-profile-card {
-      margin: 8px 10px 4px;
-      background: linear-gradient(135deg, var(--ink) 0%, #2E2010 100%);
-      border-radius: var(--radius);
-      padding: 14px;
-      color: #fff
-    }
-
-    .apc-row {
-      display: flex;
-      align-items: center;
-      gap: 10px
-    }
-
-    .apc-av {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--amber);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: .9rem;
-      flex-shrink: 0
-    }
-
-    .apc-name {
-      font-weight: 700;
-      font-size: .88rem;
-      color: #fff
-    }
-
-    .apc-role {
-      font-size: .72rem;
-      color: rgba(255, 255, 255, .6);
-      margin-top: 1px
-    }
-
-    .apc-actions {
-      display: flex;
-      gap: 6px;
-      margin-top: 10px
-    }
-
-    .apc-btn {
-      flex: 1;
-      padding: 5px 0;
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 5px;
-      background: transparent;
-      color: rgba(255, 255, 255, .8);
-      font-family: var(--font-body);
-      font-size: .75rem;
-      font-weight: 600;
-      transition: var(--t);
-      cursor: pointer
-    }
-
-    .apc-btn:hover {
-      background: rgba(255, 255, 255, .12);
-      color: #fff
-    }
-
-    .apc-btn.apc-admin {
-      background: var(--amber);
-      border-color: var(--amber);
-      color: #fff
-    }
-
-    .apc-btn.apc-admin:hover {
-      background: var(--terracotta)
-    }
 
     /* ── HERO STATS ── */
     .hero-stats {
@@ -486,24 +411,24 @@
     }
 
     :root {
-      --cream: #FAF7F2;
-      --cream-dark: #F0EAE0;
-      --ink: #1A1208;
-      --ink-light: #3D3525;
-      --ink-muted: #8A7D6D;
-      --amber: #C4783A;
-      --amber-light: #E8A96A;
-      --amber-pale: #FDF3E7;
-      --terracotta: #B85C38;
-      --border: #DDD4C5;
-      --error: #C0392B;
-      --success: #27AE60;
+      --cream: #F8FAFC;
+      --cream-dark: #F1F5F9;
+      --ink: #0F172A;
+      --ink-light: #334155;
+      --ink-muted: #64748B;
+      --amber: #6366F1;
+      --amber-light: #818CF8;
+      --amber-pale: #EEF2FF;
+      --terracotta: #4F46E5;
+      --border: #E2E8F0;
+      --error: #EF4444;
+      --success: #10B981;
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body: 'DM Sans', system-ui, sans-serif;
       --font-article: 'Lora', Georgia, serif;
-      --shadow-sm: 0 1px 3px rgba(26, 18, 8, .07);
-      --shadow-md: 0 4px 16px rgba(26, 18, 8, .10);
-      --shadow-lg: 0 12px 40px rgba(26, 18, 8, .14);
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, .07);
+      --shadow-md: 0 4px 16px rgba(15, 23, 42, .10);
+      --shadow-lg: 0 12px 40px rgba(15, 23, 42, .14);
       --radius: 8px;
       --radius-lg: 16px;
       --t: .2s ease
@@ -2092,28 +2017,15 @@
         <div class="user-menu" id="user-menu">
           <div class="avatar" id="av-icon" onclick="toggleUserDrop(event)">?</div>
           <div class="user-drop" id="user-drop">
-            <!-- Admin profile card — visible to ALL logged-in users -->
-            <div class="admin-profile-card" id="admin-profile-card">
-              <div class="apc-row">
-                <div class="apc-av" id="apc-av-icon">A</div>
-                <div>
-                  <div class="apc-name" id="apc-admin-name">Inkwell Admin</div>
-                  <div class="apc-role">🛡️ Platform Administrator</div>
-                </div>
-              </div>
-              <div class="apc-actions">
-                <button class="apc-btn" onclick="closeUserDrop();showView('home')">Explore</button>
-                <button class="apc-btn apc-admin" onclick="closeUserDrop();openAdmin()">⚙️ Admin Panel</button>
-              </div>
-            </div>
-            <div class="drop-div"></div>
             <div
               style="padding:6px 15px 4px;font-size:.72rem;color:var(--ink-muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px"
               id="drop-name"></div>
             <div class="drop-item" onclick="closeUserDrop();showView('home')">🏠 Explore</div>
             <div class="drop-item" onclick="closeUserDrop();goWrite()">✍️ Write Article</div>
             <div class="drop-item" onclick="closeUserDrop();openMyArticles()">📄 My Articles</div>
+            <div class="drop-div"></div>
             <div class="drop-item" onclick="closeUserDrop();openProfile()">👤 My Profile</div>
+            <div class="drop-item" onclick="closeUserDrop();openAdmin()">⚙️ Admin Panel</div>
             <div class="drop-item" onclick="closeUserDrop();openNotifications()">🔔 Notifications <span id="notif-badge"
                 style="display:none;background:var(--error);color:#fff;border-radius:40px;font-size:.65rem;padding:1px 6px;margin-left:4px"></span>
             </div>
@@ -2711,12 +2623,6 @@
         a.style.display = 'none'; u.style.display = 'inline-flex';
         document.getElementById('drop-name').textContent = USER_ROW.name;
         document.getElementById('av-icon').textContent = USER_ROW.initials || '?';
-        // Populate admin profile card — always shows admin identity
-        // We display the current user's initials as a placeholder; admin name comes from settings
-        const apc = document.getElementById('apc-av-icon');
-        const apn = document.getElementById('apc-admin-name');
-        if (apc) apc.textContent = 'IW'; // Inkwell initials
-        if (apn) apn.textContent = 'Inkwell Admin';
       } else {
         a.style.display = 'inline-flex'; u.style.display = 'none';
       }
@@ -2754,9 +2660,8 @@
       // Update count badge
       const ac = document.getElementById('art-count');
       if (ac) ac.textContent = `${list.length} article${list.length === 1 ? '' : 's'}${ACTIVE_CAT !== 'all' ? ' in ' + ACTIVE_CAT : q ? ' found' : ''}`;
-      // Skip index 0 only when showing ALL (no filter, no search) — it's the featured strip
+      // Keep all articles in the grid, regardless of featured strip status
       const isFiltered = ACTIVE_CAT !== 'all' || q;
-      if (!isFiltered && list.length > 1) list = list.slice(1);
       if (!list.length) {
         const catIcon = CATS[ACTIVE_CAT] || '📚';
         grid.innerHTML = `<div class="empty">
@@ -3074,9 +2979,9 @@
       const bdy = document.getElementById('admin-bdy');
       if (!ADMIN_AUTH) {
         bdy.innerHTML = `<div style="text-align:center;padding:18px 0 26px">
-      <p style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:6px">Admin PIN</p>
-      <p style="color:var(--ink-muted);font-size:.84rem;margin-bottom:22px">Enter your 6-digit PIN to access the panel.</p>
-      <div class="pin-row"><input type="password" maxlength="6" class="pin-d" id="pin-full" placeholder="••••••" inputmode="numeric" style="width:160px;letter-spacing:8px;font-size:1.6rem" onkeydown="if(event.key==='Enter')verifyPin()"></div>
+      <p style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:6px">Admin Password</p>
+      <p style="color:var(--ink-muted);font-size:.84rem;margin-bottom:22px">Enter your password to access the panel.</p>
+      <input type="password" id="pin-full" placeholder="••••••••" style="width:100%;max-width:280px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:1.05rem;margin-bottom:16px;outline:none" onkeydown="if(event.key==='Enter')verifyPin()">
       <p id="perr" style="color:var(--error);font-size:.82rem;min-height:18px;margin-bottom:10px"></p>
       <button onclick="verifyPin()" style="padding:10px 34px;background:var(--ink);color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:.9rem;font-weight:600">Unlock →</button>
     </div>`;
@@ -3095,7 +3000,7 @@
         renderAdminBdy();
       } else {
         const perr = document.getElementById('perr');
-        if (perr) perr.textContent = 'Incorrect PIN. Try again.';
+        if (perr) perr.textContent = 'Incorrect password. Try again.';
         const inp = document.getElementById('pin-full');
         if (inp) { inp.value = ''; inp.focus(); inp.style.borderColor = 'var(--error)'; setTimeout(() => inp.style.borderColor = '', 1200); }
       }
@@ -3138,12 +3043,11 @@
       🛡️ Admin: <strong>Rishabh Gupta</strong> &bull; <a href="mailto:rgupta65495@gmail.com" style="color:var(--amber)">rgupta65495@gmail.com</a><br>
       Logged in as admin email? The panel unlocks automatically.
     </div>
-    <h4 style="font-family:var(--font-display);margin-bottom:14px">Change Admin PIN</h4>
-    <div class="ff-s"><label>Current PIN</label><input type="password" id="cp0" maxlength="20" placeholder="Enter current PIN"></div>
-    <div class="ff-s"><label>New PIN (any length)</label><input type="password" id="np1" maxlength="20" placeholder="New PIN or passphrase"></div>
-    <div class="ff-s"><label>Confirm New PIN</label><input type="password" id="np2" maxlength="20" placeholder="Repeat new PIN"></div>
-    <p style="font-size:.78rem;color:var(--ink-muted);margin-bottom:12px">💡 Tip: Use a passphrase instead of just digits for better security.</p>
-    <button class="btn-ps" onclick="chgPin()">Update PIN</button>
+    <h4 style="font-family:var(--font-display);margin-bottom:14px">Change Admin Password</h4>
+    <div class="ff-s"><label>Current Password</label><input type="password" id="cp0" maxlength="80" placeholder="Enter current password"></div>
+    <div class="ff-s"><label>New Password</label><input type="password" id="np1" maxlength="80" placeholder="New password"></div>
+    <div class="ff-s"><label>Confirm New Password</label><input type="password" id="np2" maxlength="80" placeholder="Repeat new password"></div>
+    <button class="btn-ps" onclick="chgPin()">Update Password</button>
     <p id="pinmsg" style="margin-top:8px;font-size:.8rem"></p>
   </div>
   <hr style="margin:22px 0;border:none;border-top:1px solid var(--border)">
@@ -3221,15 +3125,15 @@
       if (!msg) return;
       // Allow PIN change if current PIN matches or user is the admin
       if (!isAdminUser() && cur !== String(ADMIN_PIN).trim()) {
-        msg.style.color = 'var(--error)'; msg.textContent = '❌ Current PIN is incorrect.'; return;
+        msg.style.color = 'var(--error)'; msg.textContent = '❌ Current password is incorrect.'; return;
       }
-      if (!p1) { msg.style.color = 'var(--error)'; msg.textContent = 'Enter a new PIN.'; return; }
-      if (p1 !== p2) { msg.style.color = 'var(--error)'; msg.textContent = 'PINs do not match.'; return; }
+      if (!p1) { msg.style.color = 'var(--error)'; msg.textContent = 'Enter a new password.'; return; }
+      if (p1 !== p2) { msg.style.color = 'var(--error)'; msg.textContent = 'Passwords do not match.'; return; }
       const { error } = await db.from('settings').upsert({ key: 'admin_pin', value: p1 }, { onConflict: 'key' });
       if (error) { msg.style.color = 'var(--error)'; msg.textContent = 'Save failed: ' + error.message; return; }
       ADMIN_PIN = p1;
-      msg.style.color = 'var(--success)'; msg.textContent = '✅ PIN updated successfully!';
-      toast('Admin PIN updated ✅', 'success');
+      msg.style.color = 'var(--success)'; msg.textContent = '✅ Password updated successfully!';
+      toast('Admin Password updated ✅', 'success');
       document.getElementById('np1').value = '';
       document.getElementById('np2').value = '';
       if (document.getElementById('cp0')) document.getElementById('cp0').value = '';
